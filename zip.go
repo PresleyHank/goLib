@@ -1,3 +1,11 @@
+/**
+ *  @usage
+ *      zf := goLib.Zip("path/to/myFile.zip")
+ *      zf.Extract("path/to/dest_folder/")
+ *
+ *  @author
+ *      kilfu0701
+ */
 package goLib
 
 import (
@@ -35,8 +43,17 @@ func cloneZipItem(f *zip.File, dest string) {
 	rc.Close()
 }
 
-func Extract(zip_path, dest string) {
-	r, err := zip.OpenReader(zip_path)
+type ZipFile struct {
+	path string
+}
+
+func Zip(zip_path string) *ZipFile {
+	z := &ZipFile{path: zip_path}
+	return z
+}
+
+func (z *ZipFile) Extract(dest string) {
+	r, err := zip.OpenReader(z.path)
 	checkError(err)
 	defer r.Close()
 	for _, f := range r.File {
