@@ -10,7 +10,13 @@ go get github.com/kilfu0701/goLib
 
 #### Zip
 ~~~ go
-  zf := goLib.Zip("path/to/myfile.zip")
-  zf.Extract("path/to/dest")
+  package main
+
+  import "github.com/kilfu0701/goLib"
+
+  func main() {
+    zf := goLib.Zip("path/to/myfile.zip")
+    zf.Extract("path/to/dest")
+  }
 ~~~
 
